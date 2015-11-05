@@ -4,11 +4,11 @@ var React             = require('react');
 var DOMMetrics        = require('./DOMMetrics');
 var getWindowSize     = require('./getWindowSize');
 
-var PropTypes            = React.PropTypes;
-var min   = Math.min;
-var max   = Math.max;
+var PropTypes = React.PropTypes;
+var min = Math.min;
+var max = Math.max;
 var floor = Math.floor;
-var ceil  = Math.ceil;
+var ceil = Math.ceil;
 
 type ViewportScrollState = {
   displayStart: number;
@@ -63,9 +63,9 @@ module.exports = {
         visibleStart + renderedRowsCount,
         length);
 
-    var displayStart = max(
-        0,
-        visibleStart - renderedRowsCount * 2);
+    var displayStart = min(
+        max(0, visibleStart - renderedRowsCount * 2),
+        length);
 
     var displayEnd = min(
         visibleStart + renderedRowsCount * 2,
