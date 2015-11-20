@@ -157,9 +157,6 @@ var Canvas = React.createClass({
   },
 
   componentWillReceiveProps(nextProps: any) {
-    if(nextProps.rowsCount > this.props.rowsCount){
-      React.findDOMNode(this).scrollTop =nextProps.rowsCount * this.props.rowHeight;
-    }
     var scrollbarWidth = this.getScrollbarWidth();
     var shouldUpdate = !(nextProps.visibleStart > this.state.displayStart
                         && nextProps.visibleEnd < this.state.displayEnd)
