@@ -62,6 +62,7 @@ var ReactDataGrid = React.createClass({
   propTypes: {
     rowHeight: React.PropTypes.number.isRequired,
     minHeight: React.PropTypes.number.isRequired,
+    minWidth: React.PropTypes.number,
     enableRowSelect: React.PropTypes.bool,
     onRowUpdated:React.PropTypes.func,
     rowGetter: React.PropTypes.func.isRequired,
@@ -133,10 +134,8 @@ var ReactDataGrid = React.createClass({
       handleTerminateDrag : this.handleTerminateDrag
     }
 
-
-
     var toolbar = this.renderToolbar();
-    var containerWidth = this.DOMMetrics.gridWidth();
+    var containerWidth = this.props.minWidth || this.DOMMetrics.gridWidth();
     var gridWidth = containerWidth - this.state.scrollOffset;
 
     return(
