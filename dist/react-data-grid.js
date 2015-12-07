@@ -17166,7 +17166,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return {
 	      displayStart: 0,
 	      displayEnd: totalRowCount,
-	      height: props.minHeight,
+	      height: props.minHeight - props.rowHeight,
 	      scrollTop: 0,
 	      scrollLeft: 0
 	    };
@@ -17175,7 +17175,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  updateScroll: function updateScroll(scrollTop, scrollLeft, height, rowHeight, length) {
 	    var renderedRowsCount = ceil(height / rowHeight);
 
-	    var visibleStart = floor(scrollTop / rowHeight);
+	    var visibleStart = min(floor(scrollTop / rowHeight), length - renderedRowsCount);
 
 	    var visibleEnd = min(visibleStart + renderedRowsCount, length);
 
