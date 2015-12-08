@@ -100,6 +100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  propTypes: {
 	    rowHeight: React.PropTypes.number.isRequired,
+	    headerRowHeight: React.PropTypes.number,
 	    minHeight: React.PropTypes.number.isRequired,
 	    minWidth: React.PropTypes.number,
 	    enableRowSelect: React.PropTypes.bool,
@@ -456,7 +457,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  getHeaderRows: function getHeaderRows() {
-	    var rows = [{ ref: "row", height: this.props.rowHeight }];
+	    var rows = [{ ref: "row", height: this.props.headerRowHeight || this.props.rowHeight }];
 	    if (this.state.canFilter === true) {
 	      rows.push({
 	        ref: "filterRow",
