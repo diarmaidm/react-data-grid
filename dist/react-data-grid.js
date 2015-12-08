@@ -861,6 +861,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    selectedRows: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
 	    rowsCount: PropTypes.number,
 	    onRows: PropTypes.func,
+	    canScrollX: PropTypes.bool,
+	    canScrollY: PropTypes.bool,
 	    sortColumn: React.PropTypes.string,
 	    sortDirection: React.PropTypes.oneOf(['ASC', 'DESC', 'NONE']),
 	    rowOffsetHeight: PropTypes.number.isRequired,
@@ -914,6 +916,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	          columnMetrics: this.props.columnMetrics,
 	          totalWidth: this.props.totalWidth,
 	          onScroll: this.onScroll,
+	          canScrollX: this.props.canScrollX,
+	          canScrollY: this.props.canScrollY,
 	          onRows: this.props.onRows,
 	          cellMetaData: this.props.cellMetaData,
 	          rowOffsetHeight: this.props.rowOffsetHeight || this.props.rowHeight * headerRows.length,
@@ -3054,6 +3058,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    rowHeight: PropTypes.number.isRequired,
 	    onRows: PropTypes.func,
 	    onScroll: PropTypes.func,
+	    canScrollX: PropTypes.bool,
+	    canScrollY: PropTypes.bool,
 	    minHeight: PropTypes.number
 	  },
 	  render: function render() {
@@ -3090,6 +3096,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        height: this.state.height,
 	        rowHeight: this.props.rowHeight,
 	        onScroll: this.onScroll,
+	        canScrollX: this.props.canScrollX,
+	        canScrollY: this.props.canScrollY,
 	        onRows: this.props.onRows,
 	        loadingRowRenderer: this.props.loadingRowRenderer
 	      })
@@ -3151,6 +3159,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    rowsCount: PropTypes.number.isRequired,
 	    rowGetter: PropTypes.oneOfType([PropTypes.func.isRequired, PropTypes.array.isRequired]),
 	    onRows: PropTypes.func,
+	    canScrollX: PropTypes.bool,
+	    canScrollY: PropTypes.bool,
 	    columns: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired
 	  },
 
@@ -3207,8 +3217,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      position: 'absolute',
 	      top: 0,
 	      left: 0,
-	      overflowX: 'auto',
-	      overflowY: 'scroll',
+	      overflowX: this.props.canScrollX === false ? 'hidden' : 'auto',
+	      overflowY: this.props.canScrollY === false ? 'hidden' : 'scroll',
 	      width: this.props.totalWidth + this.state.scrollbarWidth,
 	      height: this.props.height,
 	      transform: 'translate3d(0, 0, 0)'
