@@ -3267,6 +3267,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  renderLoadingRow: function renderLoadingRow(position, rowHeight) {
+	    if (this.scrollingHighVerticalDistance()) return null;
+
 	    var LoadingRow = this.props.loadingRowRenderer;
 	    if (!_.isUndefined(LoadingRow)) {
 	      return React.createElement(LoadingRow, { height: rowHeight, key: position, idx: position });
@@ -3307,7 +3309,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  _currentRowsLength: 0,
 	  _currentRowsRange: { start: 0, end: 0 },
-	  _scroll: { scrollTop: 0, scrollLeft: 0 },
+	  _scroll: { scrollTop: 0, scrollLeft: 0, changeTop: 0, changeLeft: 0 },
 
 	  getInitialState: function getInitialState() {
 	    return {
@@ -3440,13 +3442,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return { scrollTop: scrollTop, scrollLeft: scrollLeft };
 	  },
 
+	  scrollingHighVerticalDistance: function scrollingHighVerticalDistance() {
+	    var numberOfRows = 10;
+	    return Math.abs(this._scroll.changeTop) > numberOfRows * this.props.rowHeight;
+	  },
+
 	  onScroll: function onScroll(e) {
 	    this.appendScrollShim();
 	    var _e$target = e.target;
 	    var scrollTop = _e$target.scrollTop;
 	    var scrollLeft = _e$target.scrollLeft;
 
-	    var scroll = { scrollTop: scrollTop, scrollLeft: scrollLeft };
+	    var changeTop = scrollTop - this._scroll.scrollTop;
+	    var changeLeft = scrollLeft - this._scroll.scrollLeft;
+	    var scroll = { scrollTop: scrollTop, scrollLeft: scrollLeft, changeTop: changeTop, changeLeft: changeLeft };
+
 	    this._scroll = scroll;
 	    this.props.onScroll(scroll);
 	  }
