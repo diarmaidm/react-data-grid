@@ -29,6 +29,8 @@ var Grid = React.createClass({
     selectedRows: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
     rowsCount: PropTypes.number,
     onRows: PropTypes.func,
+    canScrollX: PropTypes.bool,
+    canScrollY: PropTypes.bool,
     sortColumn : React.PropTypes.string,
     sortDirection : React.PropTypes.oneOf(['ASC', 'DESC', 'NONE']),
     rowOffsetHeight: PropTypes.number.isRequired,
@@ -86,6 +88,8 @@ var Grid = React.createClass({
                   columnMetrics={this.props.columnMetrics}
                   totalWidth={this.props.totalWidth}
                   onScroll={this.onScroll}
+                  canScrollX={this.props.canScrollX}
+                  canScrollY={this.props.canScrollY}
                   onRows={this.props.onRows}
                   cellMetaData={this.props.cellMetaData}
                   rowOffsetHeight={this.props.rowOffsetHeight || this.props.rowHeight * headerRows.length}

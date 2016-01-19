@@ -31,6 +31,8 @@ var Canvas = React.createClass({
       PropTypes.array.isRequired
     ]),
     onRows: PropTypes.func,
+    canScrollX: PropTypes.bool,
+    canScrollY: PropTypes.bool,
     columns: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired
   },
 
@@ -83,8 +85,8 @@ var Canvas = React.createClass({
       position: 'absolute',
       top: 0,
       left: 0,
-      overflowX: 'auto',
-      overflowY: 'scroll',
+      overflowX: this.props.canScrollX === false ? 'hidden' : 'auto',
+      overflowY: this.props.canScrollY === false ? 'hidden' : 'scroll',
       width: this.props.totalWidth + this.state.scrollbarWidth,
       height: this.props.height,
       transform: 'translate3d(0, 0, 0)'
