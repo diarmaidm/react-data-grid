@@ -113,6 +113,15 @@ var ReactDataGrid = React.createClass({
     return selectedRows;
   },
 
+  componentWillReceiveProps:function(nextProps: ReactDataGridProps){
+    if(nextProps.sortColumn){
+      this.setState({ sortColumn: nextProps.sortColumn });
+    }
+    if(nextProps.sortDirection){
+      this.setState({ sortDirection: nextProps.sortDirection });
+    }
+  },
+
   componentDidMount() {
     var scrollOffset = 0;
     var canvas = this.getDOMNode().querySelector('.react-grid-Canvas');
