@@ -3128,6 +3128,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  onScroll: function onScroll(scroll) {
+	    if (this.props.canScrollX === false) {
+	      scroll.scrollLeft = 0;
+	    }
+
 	    this.updateScroll(scroll.scrollTop, scroll.scrollLeft, this.state.height, this.props.rowHeight, this.props.rowsCount);
 
 	    if (this.props.onScroll) {
