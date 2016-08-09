@@ -8,7 +8,6 @@
 
 var React         = require('react');
 var PropTypes     = React.PropTypes;
-var emptyFunction = require('react/lib/emptyFunction');
 
 var Draggable = React.createClass({
 
@@ -30,9 +29,9 @@ var Draggable = React.createClass({
 
   getDefaultProps() {
     return {
-      onDragStart: emptyFunction.thatReturnsTrue,
-      onDragEnd: emptyFunction,
-      onDrag: emptyFunction
+      onDragStart: () => true,
+      onDragEnd: () => {},
+      onDrag: () => {}
     };
   },
 

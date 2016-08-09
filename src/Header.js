@@ -7,6 +7,7 @@
 "use strict";
 
 var React               = require('react');
+var ReactDOM            = require('react-dom');
 var joinClasses          = require('classnames');
 var shallowCloneObject  = require('./shallowCloneObject');
 var ColumnMetrics       = require('./ColumnMetrics');
@@ -146,7 +147,7 @@ var Header = React.createClass({
   },
 
   setScrollLeft(scrollLeft: number) {
-    var node = this.refs.row.getDOMNode();
+    var node = ReactDOM.findDOMNode(this.refs.row);
     node.scrollLeft = scrollLeft;
     this.refs.row.setScrollLeft(scrollLeft);
     if (this.refs.filterRow) {

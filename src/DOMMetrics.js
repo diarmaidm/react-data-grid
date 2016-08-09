@@ -7,7 +7,6 @@
 'use strict';
 
 var React               = require('react');
-var emptyFunction       = require('react/lib/emptyFunction');
 var shallowCloneObject  = require('./shallowCloneObject');
 
 var contextTypes = {
@@ -121,7 +120,7 @@ var MetricsMixin = {
 
       this.DOMMetrics = {};
       for (var name in this._DOMMetricsDefs) {
-        this.DOMMetrics[name] = emptyFunction;
+        this.DOMMetrics[name] = () => {};
       }
     }
   },

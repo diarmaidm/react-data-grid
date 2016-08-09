@@ -1,5 +1,6 @@
 'use strict';
 var React        = require('react');
+var ReactDOM     = require('react-dom');
 var rewire       = require('rewire');
 var Cell         = rewire('../Cell');
 var TestUtils    = require('react/lib/ReactTestUtils');
@@ -103,7 +104,7 @@ describe('Cell Tests', () => {
       var cellInstance = TestUtils.renderIntoDocument(<Cell {...testProps}/>);
       // force update
       cellInstance.setProps({rowData: {}, selectedColumn: testProps.column});
-      var cellHasUpdateClass = cellInstance.getDOMNode().getAttribute('class').indexOf(updateClass) > -1;
+      var cellHasUpdateClass = ReactDOM.findDOMNode(cellInstance).getAttribute('class').indexOf(updateClass) > -1;
       expect(cellHasUpdateClass).toBe(true);
     })
 

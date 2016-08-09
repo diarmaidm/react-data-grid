@@ -1,6 +1,7 @@
 /*eslint no-var:0, no-console:0 */
 'use strict';
 var React         = require('react');
+var ReactDOM      = require('react-dom');
 var rewire        = require('rewire');
 var Grid          = rewire('../Grid');
 var TestUtils     = require('react/lib/ReactTestUtils');
@@ -67,7 +68,7 @@ describe('Base Grid Tests', () => {
     var viewportContainerNode;
     spyOn(testProps, 'onViewportKeydown');
     testElement = TestUtils.renderIntoDocument(<Grid {...testProps}/>);
-    viewportContainerNode = testElement.refs.viewPortContainer.getDOMNode();
+    viewportContainerNode = ReactDOM.findDOMNode(testElement.refs.viewPortContainer);
     TestUtils.Simulate.keyDown(viewportContainerNode, {key: 'Enter'});
     expect(testProps.onViewportKeydown).toHaveBeenCalled();
   });
@@ -76,7 +77,7 @@ describe('Base Grid Tests', () => {
     var viewportContainerNode;
     spyOn(testProps, 'onViewportDoubleClick');
     testElement = TestUtils.renderIntoDocument(<Grid {...testProps}/>);
-    viewportContainerNode = testElement.refs.viewPortContainer.getDOMNode();
+    viewportContainerNode = ReactDOM.findDOMNode(testElement.refs.viewPortContainer);
     TestUtils.Simulate.doubleClick(viewportContainerNode);
     expect(testProps.onViewportDoubleClick).toHaveBeenCalled();
   });
@@ -85,7 +86,7 @@ describe('Base Grid Tests', () => {
     var viewportContainerNode;
     spyOn(testProps, 'onViewportDragStart');
     testElement = TestUtils.renderIntoDocument(<Grid {...testProps}/>);
-    viewportContainerNode = testElement.refs.viewPortContainer.getDOMNode();
+    viewportContainerNode = ReactDOM.findDOMNode(testElement.refs.viewPortContainer);
     TestUtils.Simulate.dragStart(viewportContainerNode);
     expect(testProps.onViewportDragStart).toHaveBeenCalled();
   });
@@ -94,7 +95,7 @@ describe('Base Grid Tests', () => {
     var viewportContainerNode;
     spyOn(testProps, 'onViewportDragEnd');
     testElement = TestUtils.renderIntoDocument(<Grid {...testProps}/>);
-    viewportContainerNode = testElement.refs.viewPortContainer.getDOMNode();
+    viewportContainerNode = ReactDOM.findDOMNode(testElement.refs.viewPortContainer);
     TestUtils.Simulate.dragEnd(viewportContainerNode);
     expect(testProps.onViewportDragEnd).toHaveBeenCalled();
   });
