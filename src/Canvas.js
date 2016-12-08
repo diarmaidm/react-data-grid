@@ -233,6 +233,7 @@ var Canvas = React.createClass({
       if (!this.isMounted()) return;
       var newRows = this.getRows(this.state.displayStart, this.state.displayEnd);
 
+      var hasListSizeChanged = newRows.length !== this.state.rows.length;
       var isDifferent = _.some(newRows, ({row, position}, index) => {
         const stateRow = this.state.rows[index];
         if (_.isUndefined(stateRow)) return true;
@@ -242,7 +243,7 @@ var Canvas = React.createClass({
         return !_.isEqual(row, stateRow.row);
       });
 
-      if (!isDifferent) return;
+      if (!isDifferent && !hasListSizeChanged) return;
       this.setState({rows: newRows, shouldUpdate: true});
     }, this.props.debounceRowRequestWait);
   },
